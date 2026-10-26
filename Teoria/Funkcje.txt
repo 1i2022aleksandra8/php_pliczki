@@ -1,0 +1,12 @@
+		Funkcje tekstowe:
+- strlen(): Obliczanie długości łańcucha znaków
+- str_replace(): Zastępowanie tekstu
+- substr(): Wycinanie części łańcucha znaków
+- strpos(): Wyszukiwanie pozycji tekstu
+- strtoupper() i strtolower(): Wielka i mała liotera na całość
+- trim(): Usuwanie skrajnych białych znaków
+- str_word_count(): Liczenie słów
+- strrev(): Odwracanie łańcucha znaków
+- explode(): Rozdzielanie łańcucha na tablicę
+- implode(): Łączenie elementów tablicy w łańcuch
+- ucwords(): Zamiana pierwszych liter wyrazów na duże

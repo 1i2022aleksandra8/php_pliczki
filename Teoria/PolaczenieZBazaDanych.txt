@@ -1,0 +1,78 @@
+mysqli_connect() + 4 argumenty: nazwa hosta, nazwa użytkownika, haslo użytkownika, nazwa bazy danych której będziemy używac
+nazwa hosta - nazwa lub adres IP serwera, na którym umieszczono bazę danych
+Jeśli jakiś argument zostanie pominięty to zostanie podstawiona wartość domyślna
+
+np.: $polaczenie=mysqli_connect('localhost', 'root', '', 'pracownicy');
+
+Funkcje sprawdzjące połączenie z bazą danych:
+mysqli_connect_errno() - zwraca kod błędu połączenia
+mysqli_connect_error() - zwraca opis błędu połączenia
+
+mysqli_close() - zakończenie połączenia z bazą danych
+$dbhost = "host";
+$dbname = "nazwabazy";
+$dbuser = "uzytkownik";
+$dbpass = "haslo";
+$polaczenie = mysqli_close($dbhost, $dbname...);
+
+
+mysqli_query - Zapytanie
+mysqli_query($polaczenie, 'SELECT imie,nazwisko,data_urodzenia FROM pracownicy WHERE imie="Aneta"');
+$zapytanie = mysqli_query($polaczenie, 'SELECT imie,nazwisko,data_urodzenia FROM pracownicy WHERE imie="Aneta"');
+
+
+mysqli_fetch_array() - zwraca numeryczną tablice
+mysqli_fetch_assoc() - zwraca asocjacyjną tablice
+mysqli_fetch_row() - wyjmowanie liczbowe - ponumeruj (od zera) elementy tablicy jednowymiarowej
+$wynik = mysqli_fetch_array($zapytanie);
+
+
+Żeby odczytać zawartości tabeli trzeba wywołać funkcję w pętli.
+$zapytanie2 = "SELECT imie,nazwisko,data_urodzenia,adres FROM pracownicy ORDER BY nazwisko";
+while($wiersz=$wynik=mysqli_fetch_array($zapytanie2)){
+      echo $wiersz['imie'].' '.$wiersz['nazwisko'] itd.
+}
+
+mysqli_num_rows() - zwraca liczbę wierszy znajdujących się w wyniku zapytania. 
+Wartość tę można użyć do pętli FOR aby odczytać kolejne wiersze zwrócone przez zapytanie.
+
+$zapytanie2 = "SELECT imie,nazwisko,data_urodzenia,adres FROM pracownicy ORDER BY nazwisko";
+$zapytanie =mysqli_query($polaczenie, $zapytanie2)
+$ilosc = mysqli_num_rows($zapytanie);
+
+for($i=0;$i<$ilosc;$i++){
+	$wiersz = mysqli_fetch_array($zapytanie);
+	echo $wiersz['imie']."".$wiersz['nazwisko']."".$wiersz['data_urodzenia']."<br>";
+}
+
+
+Wyświetlanie jako tabela lub lista:
+echo "<table border="3">";
+echo "<tr><th>Imie</th><th>Nazwisko</th><th>Data urodzenia</th></tr>";
+
+for($i=0; $i<$ilosc; $i++){
+	$wiersz = mysqli_fetch_array($zapytanie);
+	echo "<tr><td>".$wiersz['imie']."</td><td>".$wiersz['nazwisko']."</td><td>".$wiersz['data_urodzenia']."</td></tr>";
+}
+echo '</table>';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
